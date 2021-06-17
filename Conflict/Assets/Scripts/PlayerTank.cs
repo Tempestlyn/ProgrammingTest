@@ -10,9 +10,13 @@ public class PlayerTank : MonoBehaviour
     public float MaxBackwardSpeed;
     public float Acceleration;
     public float Deceleration;
-    
     public float TurnSpeed;
+
+    public int ActiveWeapon;
     public List<Weapon> Weapons;
+
+    public GameObject BulletPrefab;
+    public Transform BulletSpawn;
 
     void Update()
     {
@@ -54,5 +58,17 @@ public class PlayerTank : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
             transform.Rotate(-Vector3.forward * TurnSpeed * Time.deltaTime);
 
+
+        if (Input.GetKeyDown(KeyCode.Space))
+            Shoot();
+    }
+
+
+
+    public void Shoot()
+    {
+        var bullet = Instantiate(BulletPrefab, BulletSpawn.position, BulletSpawn.transform.rotation).GetComponent<Bullet>();
+        bullet.WeaponData = Weapons[ActiveWeapon];
+        
     }
 }
