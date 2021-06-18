@@ -6,10 +6,8 @@ public class BattlefieldObject : MonoBehaviour
 {
 
     public GameObject DestroyedObject;
-    public GameObject PhysicsCollider;
 
-    public int Health;
-    public int DurabilityAbsorption;
+    public int Durability;
     public bool Bouncy;
 
     // Start is called before the first frame update
@@ -17,9 +15,13 @@ public class BattlefieldObject : MonoBehaviour
 
     private void Start()
     {
-        if (!Bouncy)
+        if (Bouncy)
         {
-            PhysicsCollider.layer = 9;
+            GetComponent<Collider2D>().isTrigger = false;
+        }
+        else
+        {
+            GetComponent<Collider2D>().isTrigger = true;
         }
     }
 
@@ -29,12 +31,13 @@ public class BattlefieldObject : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void TakeDamage(int Damage)
+    public int ReduceDurability(int Damage)
     {
-        Health -= Damage;
-        if(Health <= 0)
+        Durability -= Damage;
+        if(Durability <= 0)
         {
             DestroyObject();
         }
+        return Durability;
     }
 }

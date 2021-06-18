@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -9,47 +10,49 @@ public class Bullet : MonoBehaviour
     public Weapon WeaponData;
     public float Speed;
     public float Range;
-    public int Damage;
     public int Durability;
-    private Collider2D collider;
+    public int Damage;
+    public float HomingTurnSpeed;
 
     public GameObject ExplosionPrefab;
+    public PlayerTank ControllingTank;
 
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
-        collider = gameObject.GetComponent<Collider2D>();
 
-
+        Damage = WeaponData.Damage;
         Speed = WeaponData.Speed;
         Durability = WeaponData.Durability;
-        Damage = WeaponData.Damage;
-        rigidbody.AddForce(-transform.up * Speed);
-
+        HomingTurnSpeed = WeaponData.HomingTurnSpeed;
+        rigidbody.velocity = -transform.up * Speed;
+        Debug.Log(HomingTurnSpeed);
     }
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.GetComponent<Object>())
-        {
-            Debug.Log("Test");
-            ResolveHitObject(collider.gameObject.GetComponent<BattlefieldObject>());
 
+        if (collider.gameObject.GetComponent<BattlefieldObject>())
+        {
+            ResolveHitObject(collider.gameObject.GetComponent<BattlefieldObject>());
         }
     }
 
 
-    // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
         transform.up = -rigidbody.velocity;
     }
 
-    public void ResolveHitObject(BattlefieldObject obj)
+    public virtual void ResolveHitObject(BattlefieldObject obj)
     {
-        obj.TakeDamage(Damage);
-        ReduceDurability(obj.DurabilityAbsorption);
+        var objDurability = obj.Durability;
+        if (obj.ReduceDurability(Damage) > 0)
+        {
+            DestroyBullet();
+        }      
+        ReduceDurability(objDurability);
     }
 
     public void ReduceDurability(int value)
@@ -66,5 +69,7 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject);
 
     }
+
+
 
 }

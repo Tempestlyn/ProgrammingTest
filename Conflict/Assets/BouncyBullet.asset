@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: BouncyBullet
   m_EditorClassIdentifier: 
   BulletSprite: {fileID: 0}
-  Speed: 100
-  Durability: 2
-  Range: 0
-  Bouncy: 1
-  Homing: 0
+  Speed: 3
+  Durability: 1
+  Range: 1
+  shotType: 2
   Damage: 1
+  HomingTurnSpeed: 5

@@ -19,6 +19,8 @@ public class PlayerTank : MonoBehaviour
 
     public GameObject BulletPrefab;
     public GameObject BouncyBulletPrefab;
+    public GameObject HomingBulletPrefab;
+
     public Transform BulletSpawn;
 
     void Update()
@@ -71,15 +73,27 @@ public class PlayerTank : MonoBehaviour
 
     public void Shoot()
     {
-        if (!Weapons[ActiveWeapon].Bouncy)
+        if (Weapons[ActiveWeapon].shotType == ShotType.Standard)
         {
             var bullet = Instantiate(BulletPrefab, BulletSpawn.position, BulletSpawn.transform.rotation).GetComponent<Bullet>();
             bullet.WeaponData = Weapons[ActiveWeapon];
+            bullet.ControllingTank = this;
         }
-        else
+        else if(Weapons[ActiveWeapon].shotType == ShotType.Bouncy)
         {
             var bullet = Instantiate(BouncyBulletPrefab, BulletSpawn.position, BulletSpawn.transform.rotation).GetComponent<Bullet>();
             bullet.WeaponData = Weapons[ActiveWeapon];
+            bullet.ControllingTank = this;
+        }
+        else if(Weapons[ActiveWeapon].shotType == ShotType.Homing)
+        {
+            var bullet = Instantiate(HomingBulletPrefab, BulletSpawn.position, BulletSpawn.transform.rotation).GetComponent<Bullet>();
+            bullet.WeaponData = Weapons[ActiveWeapon];
+            bullet.ControllingTank = this;
+        }
+        else
+        {
+            Debug.LogError("No prefab exists for this shot type");
         }
         
     }
