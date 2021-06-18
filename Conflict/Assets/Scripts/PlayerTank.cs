@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerTank : MonoBehaviour
 {
+    //This script is meant to capture player functionality, including movement, shooting
+
     public float CurrentSpeed;
     public float MaxForwardSpeed;
     public float MaxBackwardSpeed;
@@ -16,12 +18,13 @@ public class PlayerTank : MonoBehaviour
     public List<Weapon> Weapons;
 
     public GameObject BulletPrefab;
+    public GameObject BouncyBulletPrefab;
     public Transform BulletSpawn;
 
     void Update()
     {
 
-        
+        //Player movement
         if ((Input.GetKey(KeyCode.W)) && (CurrentSpeed < MaxForwardSpeed))
         {
             CurrentSpeed = CurrentSpeed + (Acceleration * Time.deltaTime);
@@ -59,6 +62,7 @@ public class PlayerTank : MonoBehaviour
             transform.Rotate(-Vector3.forward * TurnSpeed * Time.deltaTime);
 
 
+        //This capture the player fire trigger, calls shoot
         if (Input.GetKeyDown(KeyCode.Space))
             Shoot();
     }
@@ -67,8 +71,16 @@ public class PlayerTank : MonoBehaviour
 
     public void Shoot()
     {
-        var bullet = Instantiate(BulletPrefab, BulletSpawn.position, BulletSpawn.transform.rotation).GetComponent<Bullet>();
-        bullet.WeaponData = Weapons[ActiveWeapon];
+        if (!Weapons[ActiveWeapon].Bouncy)
+        {
+            var bullet = Instantiate(BulletPrefab, BulletSpawn.position, BulletSpawn.transform.rotation).GetComponent<Bullet>();
+            bullet.WeaponData = Weapons[ActiveWeapon];
+        }
+        else
+        {
+            var bullet = Instantiate(BouncyBulletPrefab, BulletSpawn.position, BulletSpawn.transform.rotation).GetComponent<Bullet>();
+            bullet.WeaponData = Weapons[ActiveWeapon];
+        }
         
     }
 }

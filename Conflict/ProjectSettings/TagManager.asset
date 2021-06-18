@@ -11,10 +11,10 @@ TagManager:
   - Player
   - Water
   - UI
-  - Ground
-  - 
-  - 
-  - 
+  - Bullet
+  - Object
+  - BouncyBullet
+  - IgnoreBouncyBullets
   - 
   - 
   - 
@@ -49,4 +49,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 779901621
+    locked: 0
+  - name: Explosion
+    uniqueID: 748264823
     locked: 0
