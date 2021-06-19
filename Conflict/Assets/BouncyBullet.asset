@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BulletSprite: {fileID: 0}
   Speed: 3
-  Durability: 1
+  Durability: 3
   Range: 1
-  shotType: 2
+  shotType: 1
   Damage: 1
   HomingTurnSpeed: 5

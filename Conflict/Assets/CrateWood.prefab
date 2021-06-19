@@ -122,6 +122,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c577f18be715e146a4b33a1bae0e5b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DestroyedObject: {fileID: 3556611615703672009, guid: 419e805cc0c51ad41b5ab2500684eb16, type: 3}
+  DestroyedObject:
+    Prefab: {fileID: 3556611615703672009, guid: 419e805cc0c51ad41b5ab2500684eb16, type: 3}
+    ChanceToSpawn: 100
   Durability: 1
   Bouncy: 1

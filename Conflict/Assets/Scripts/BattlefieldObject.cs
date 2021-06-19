@@ -5,7 +5,7 @@ using UnityEngine;
 public class BattlefieldObject : MonoBehaviour
 {
 
-    public GameObject DestroyedObject;
+    public DestroyedPrefab DestroyedObject;
 
     public int Durability;
     public bool Bouncy;
@@ -27,7 +27,10 @@ public class BattlefieldObject : MonoBehaviour
 
     void DestroyObject()
     {
-        Instantiate(DestroyedObject, transform.position, transform.rotation);
+        if (Random.value < (DestroyedObject.ChanceToSpawn / 100))
+        {
+            Instantiate(DestroyedObject.Prefab, transform.position, transform.rotation);
+        }
         Destroy(gameObject);
     }
 
@@ -40,4 +43,10 @@ public class BattlefieldObject : MonoBehaviour
         }
         return Durability;
     }
+}
+[System.Serializable]
+public struct DestroyedPrefab
+{
+    public GameObject Prefab;
+    public float ChanceToSpawn;
 }
