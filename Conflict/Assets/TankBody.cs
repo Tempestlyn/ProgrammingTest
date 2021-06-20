@@ -5,11 +5,22 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "TankBody", menuName = "Tank/Create new Tank Body")]
 public class TankBody : ScriptableObject
-{
-
-    public float DurabilityModifyer;
-    public float SpeedModifyer;
-    public float AccelerationModifyer;
-    public float TurnModifyer;
+{ 
+    public int DurabilityModifyer;
     public int NumberOfWeaponsModifyer;
+    public float ForwardSpeedModifyer;
+    public float BackwardsSpeedModifyer;
+    public float AccelerationModifyer;
+    public float DeccelerationModifyer;
+    public float TurnModifyer;
+
+
+    public void ApplyTankBodyData(PlayerTank tank)
+    {
+        tank.MaxForwardSpeed += ForwardSpeedModifyer;
+        tank.MaxBackwardSpeed += BackwardsSpeedModifyer;
+        tank.Acceleration += AccelerationModifyer;
+        tank.Deceleration += AccelerationModifyer;
+        tank.TurnSpeed += TurnModifyer;
+    }
 }

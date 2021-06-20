@@ -6,6 +6,9 @@ using UnityEngine;
 public class PlayerTank : MonoBehaviour
 {
     //This script is meant to capture player functionality, including movement, shooting
+    public Player PlayerNumber;
+    private bool IsPlayer1;
+    public int Durability;
 
     public float CurrentSpeed;
     public float MaxForwardSpeed;
@@ -14,8 +17,11 @@ public class PlayerTank : MonoBehaviour
     public float Deceleration;
     public float TurnSpeed;
 
+    public int NumberOfWeapons;
     public int ActiveWeapon;
     public List<Weapon> Weapons;
+
+    public TankBody BodyData;
 
     public GameObject BulletPrefab;
     public GameObject BouncyBulletPrefab;
@@ -23,15 +29,18 @@ public class PlayerTank : MonoBehaviour
 
     public Transform BulletSpawn;
 
+    private void Start()
+    {
+        IsPlayer1 = PlayerNumber == Player.Player1;
+    }
     void Update()
     {
-
         //Player movement
-        if ((Input.GetKey(KeyCode.W)) && (CurrentSpeed < MaxForwardSpeed))
+        if ((IsPlayer1 && (Input.GetKey(KeyCode.W)) && (CurrentSpeed < MaxForwardSpeed)) || (!IsPlayer1 && (Input.GetKey(KeyCode.Keypad8)) && (CurrentSpeed < MaxForwardSpeed)))
         {
             CurrentSpeed = CurrentSpeed + (Acceleration * Time.deltaTime);
         }
-        else if ((Input.GetKey(KeyCode.S)) && (CurrentSpeed > -MaxBackwardSpeed))
+        else if ((IsPlayer1 && (Input.GetKey(KeyCode.S)) && (CurrentSpeed > -MaxBackwardSpeed)) || (!IsPlayer1 && (Input.GetKey(KeyCode.Keypad5)) && (CurrentSpeed > -MaxBackwardSpeed)))
         {
             CurrentSpeed = CurrentSpeed - (Acceleration * Time.deltaTime);
         }
@@ -54,19 +63,23 @@ public class PlayerTank : MonoBehaviour
         }
 
         transform.position -= transform.up * (CurrentSpeed * Time.deltaTime);
+        if (CurrentSpeed == 0)
+        {
+            GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
+        }
 
-        
-
-        if (Input.GetKey(KeyCode.A))
+        if ((IsPlayer1 && Input.GetKey(KeyCode.A)) || (!IsPlayer1 && Input.GetKey(KeyCode.Keypad4)))
             transform.Rotate(Vector3.forward * TurnSpeed * Time.deltaTime);
 
-        if (Input.GetKey(KeyCode.D))
+        if ((IsPlayer1 && Input.GetKey(KeyCode.D)) || (!IsPlayer1 && Input.GetKey(KeyCode.Keypad6)))
             transform.Rotate(-Vector3.forward * TurnSpeed * Time.deltaTime);
 
 
         //This capture the player fire trigger, calls shoot
-        if (Input.GetKeyDown(KeyCode.Space))
+        if ((IsPlayer1 && Input.GetKeyDown(KeyCode.E)) || (!IsPlayer1 && Input.GetKeyDown(KeyCode.Keypad9)))
+        {
             Shoot();
+        }
     }
 
 
@@ -97,4 +110,28 @@ public class PlayerTank : MonoBehaviour
         }
         
     }
+
+
+
+    public void UpdateTreadData()
+    {
+
+    }
+
+    public void Updatem()
+    {
+        
+    }
+}
+
+public enum Player
+{
+    Player1,
+    Player2
+}
+
+public enum PlayerColor
+{
+    Blue,
+    Red
 }

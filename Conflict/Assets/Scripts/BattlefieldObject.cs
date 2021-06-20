@@ -9,7 +9,7 @@ public class BattlefieldObject : MonoBehaviour
 
     public int Durability;
     public bool Bouncy;
-
+    public GameObject DestroyedParticles;
     // Start is called before the first frame update
 
 
@@ -30,6 +30,8 @@ public class BattlefieldObject : MonoBehaviour
         if (Random.value < (DestroyedObject.ChanceToSpawn / 100))
         {
             Instantiate(DestroyedObject.Prefab, transform.position, transform.rotation);
+            var particles = Instantiate(DestroyedParticles, transform.position, DestroyedParticles.transform.rotation);
+            particles.GetComponent<ParticleSystem>().Play();
         }
         Destroy(gameObject);
     }
