@@ -21,7 +21,7 @@ public class PlayerTank : MonoBehaviour
     public int ActiveWeapon;
     public List<Weapon> Weapons;
 
-    public TankBody BodyData;
+    public TankHull BodyData;
 
     public GameObject BulletPrefab;
     public GameObject BouncyBulletPrefab;
