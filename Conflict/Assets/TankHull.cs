@@ -13,6 +13,7 @@ public class TankHull : ScriptableObject
     public float AccelerationModifyer;
     public float DeccelerationModifyer;
     public float TurnModifyer;
+    public float ScaleModifyer;
 
 
     public void ApplyTankBodyData(PlayerTank tank)
@@ -23,5 +24,6 @@ public class TankHull : ScriptableObject
         tank.Acceleration += AccelerationModifyer;
         tank.Deceleration += AccelerationModifyer;
         tank.TurnSpeed += TurnModifyer;
+        tank.transform.localScale = tank.transform.localScale *= ScaleModifyer;
     }
 }

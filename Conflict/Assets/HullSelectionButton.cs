@@ -20,7 +20,15 @@ public class HullSelectionButton : MonoBehaviour
     private void SetSelected()
     {
         CustomizationManager.SelectedHull = Hull;
+        foreach(GunSelectionButton gunSelectionButton in CustomizationManager.gunSelectionButtons)
+        {
+            if (CustomizationManager.SelectedWeapons.Contains(gunSelectionButton.Weapon))
+            {
+                gunSelectionButton.SelectWeapon();
+            }
+        }
         CustomizationManager.MaxSelectableWeapons = Hull.NumberOfWeapons;
+        
         SelectedUI.SetActive(true);
     }
 

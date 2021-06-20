@@ -138,8 +138,7 @@ MonoBehaviour:
   TurnSpeed: 40
   NumberOfWeapons: 0
   ActiveWeapon: 0
-  Weapons:
-  - {fileID: 11400000, guid: 3373504212007a647afeade7864594ce, type: 2}
+  Weapons: []
   BodyData: {fileID: 0}
   BulletPrefab: {fileID: 6481526787697208820, guid: d52d7390502a4a143a24396912866aac, type: 3}
   BouncyBulletPrefab: {fileID: 6753928208699432840, guid: 254756fce0db9004da7b5858df605654, type: 3}

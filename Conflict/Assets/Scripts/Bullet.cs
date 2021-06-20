@@ -27,7 +27,6 @@ public class Bullet : MonoBehaviour
         Durability = WeaponData.Durability;
         HomingTurnSpeed = WeaponData.HomingTurnSpeed;
         rigidbody.velocity = -transform.up * Speed;
-        Debug.Log(HomingTurnSpeed);
     }
 
     void OnTriggerEnter2D(Collider2D collider)

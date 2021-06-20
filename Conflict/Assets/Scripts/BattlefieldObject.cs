@@ -30,6 +30,9 @@ public class BattlefieldObject : MonoBehaviour
         if (Random.value < (DestroyedObject.ChanceToSpawn / 100))
         {
             Instantiate(DestroyedObject.Prefab, transform.position, transform.rotation);
+        }
+        if (DestroyedParticles != null)
+        {
             var particles = Instantiate(DestroyedParticles, transform.position, DestroyedParticles.transform.rotation);
             particles.GetComponent<ParticleSystem>().Play();
         }
