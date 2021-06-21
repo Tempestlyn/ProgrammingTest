@@ -21,12 +21,25 @@ public class LevelController : MonoBehaviour
 
     public int Player1Score;
     public int Player2Score;
+    public int ScoreNeededToWin;
 
     public TextMeshProUGUI Player1ActiveWeaponText;
     public TextMeshProUGUI Player2ActiveWeaponText;
+
+    public Scoreboard Scoreboard;
+
     private void Start()
     {
         GenerateMap();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Scoreboard.gameObject.SetActive(!Scoreboard.gameObject.activeSelf);
+            Scoreboard.UpdatePlayerScores(Player1Score, Player2Score);
+        }
     }
 
     public void Refresh()
@@ -39,9 +52,26 @@ public class LevelController : MonoBehaviour
         {
             SpawnPoints[i].Clear();
         }
-        DestroyObjects();
-        GenerateMap();
-        SpawnPlayers();
+
+        if (Player1Score >= ScoreNeededToWin)
+        {
+            Scoreboard.gameObject.SetActive(true);
+            Scoreboard.UpdatePlayerScores(Player1Score, Player2Score);
+            Scoreboard.DeclareWinner(Scoreboard.Player1WinString);
+
+        }
+        else if (Player2Score >= ScoreNeededToWin)
+        {
+            Scoreboard.gameObject.SetActive(true);
+            Scoreboard.UpdatePlayerScores(Player1Score, Player2Score);
+            Scoreboard.DeclareWinner(Scoreboard.Player2WinString);
+        }
+        else
+        {
+            DestroyObjects();
+            GenerateMap();
+            SpawnPlayers();
+        }
     }
 
     public void GenerateMap()
@@ -69,10 +99,21 @@ public class LevelController : MonoBehaviour
         }
     }
 
+    public void IncreasePlayerScore(Player player)
+    {
+        if(player == Player.Player1)
+        {
+            Player1Score += 1;
+        }
+        else
+        {
+            Player2Score += 1;
+        }
+    }
+
     public void SpawnPlayers()
     {
         
-
         Player1Tank = Instantiate(Player1Customization.TankPrefab, Player1StartingPosition.transform).GetComponent<PlayerTank>();
         Player1Tank.PlayerNumber = Player.Player1;
         Player1Tank.levelController = this;
@@ -113,4 +154,7 @@ public class LevelController : MonoBehaviour
             Destroy(prefabs[i].gameObject);
         }
     }
+
+    
+    
 }

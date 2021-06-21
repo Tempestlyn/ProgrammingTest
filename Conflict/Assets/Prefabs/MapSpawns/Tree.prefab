@@ -101,7 +101,7 @@ MonoBehaviour:
     ChanceToSpawn: 100
   Durability: 3
   Bouncy: 1
-  DestroyedParticles: {fileID: 0}
+  DestroyedParticles: {fileID: 4977036508657781050, guid: a9c8dbc8a8e91284ab2a17d123252d6a, type: 3}
 --- !u!58 &2426421697914433874
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -182,11 +182,11 @@ public class PlayerTank : MonoBehaviour
         levelController.RoundEnded = true;
         if(IsPlayer1)
         {
-            levelController.Player2Score += 1;
+            levelController.IncreasePlayerScore(Player.Player2);
         }
         else
         {
-            levelController.Player1Score += 1;
+            levelController.IncreasePlayerScore(Player.Player1);
         }
         yield return new WaitForSeconds(3);
         levelController.Refresh();

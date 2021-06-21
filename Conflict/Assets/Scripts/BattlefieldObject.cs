@@ -27,9 +27,12 @@ public class BattlefieldObject : MonoBehaviour
 
     void DestroyObject()
     {
-        if (Random.value < (DestroyedObject.ChanceToSpawn / 100))
+        if (DestroyedObject.Prefab != null)
         {
-            Instantiate(DestroyedObject.Prefab, transform.position, transform.rotation);
+            if (Random.value < (DestroyedObject.ChanceToSpawn / 100))
+            {
+                Instantiate(DestroyedObject.Prefab, transform.position, transform.rotation);
+            }
         }
         if (DestroyedParticles != null)
         {

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 public class StartGameScript : MonoBehaviour
 {
 
@@ -15,29 +16,27 @@ public class StartGameScript : MonoBehaviour
 
     public LevelController levelController;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    public Slider ScoreSlider;
+    public TextMeshProUGUI WinningScoreText;
     public void StartGame()
     {
         if (Player1Customization.SelectedWeapons.Count != 0 && Player2Customization.SelectedWeapons.Count != 0)
         {
+            levelController.ScoreNeededToWin = (int)ScoreSlider.value;
             levelController.Player1Customization = Player1Customization;
             levelController.Player2Customization = Player2Customization;
             levelController.SpawnPlayers();
             CustomizationUI.SetActive(false);
             levelController.Player1ActiveWeaponText.gameObject.SetActive(true);
             levelController.Player2ActiveWeaponText.gameObject.SetActive(true);
+            
         }
+    }
+
+    public void UpdateWinningScoreText()
+    {
+        //Updates the text of what score is needed to win
+        WinningScoreText.text = "Score To Win: " + (int)ScoreSlider.value;
+
     }
 }
