@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BulletSprite: {fileID: 0}
   Speed: 4
+  RateOfFireModifyer: 1
   Durability: 1
   shotType: 0
-  Damage: 3
+  Damage: 4
   HomingTurnSpeed: 0
   Name: Armor Piercing Round
   Description: Fast and will most likely be a 1-shot, but won't hit anything other

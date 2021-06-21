@@ -10,6 +10,7 @@ public class Weapon : ScriptableObject
     //This is a basic structure for the weapons
     public Sprite BulletSprite;
     public float Speed;
+    public float RateOfFireModifyer;
     public int Durability;
     [HideInInspector]
     public ShotType shotType;
@@ -19,6 +20,7 @@ public class Weapon : ScriptableObject
     public string Name;
     [TextArea]
     public string Description;
+
 }
 
 public enum ShotType

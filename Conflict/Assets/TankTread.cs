@@ -16,7 +16,7 @@ public class TankTread : ScriptableObject
     [TextArea]
     public string Description;
 
-    public void ApplyTankBodyData(PlayerTank tank)
+    public void ApplyTankTreadData(PlayerTank tank)
     {
         tank.MaxForwardSpeed += ForwardSpeedModifyer;
         tank.MaxBackwardSpeed += BackwardsSpeedModifyer;

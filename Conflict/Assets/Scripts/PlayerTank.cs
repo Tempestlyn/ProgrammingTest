@@ -8,7 +8,7 @@ public class PlayerTank : MonoBehaviour
     //This script is meant to capture player functionality, including movement, shooting
     
     public Player PlayerNumber;
-    private bool IsPlayer1;
+    public bool IsPlayer1;
 
     public int Durability;
 
@@ -22,6 +22,7 @@ public class PlayerTank : MonoBehaviour
     public int NumberOfWeapons;
     public int ActiveWeapon;
     public List<Weapon> Weapons;
+    public float FireRate;
 
     public LevelController levelController;
 
@@ -36,6 +37,7 @@ public class PlayerTank : MonoBehaviour
     public Transform BulletSpawn;
 
     private bool CanMove = true;
+    private bool CanFire = true;
     private Rigidbody2D rigidbody;
 
     private void Start()
@@ -90,15 +92,36 @@ public class PlayerTank : MonoBehaviour
             //This capture the player fire trigger, calls shoot
             if ((IsPlayer1 && Input.GetKeyDown(KeyCode.E)) || (!IsPlayer1 && Input.GetKeyDown(KeyCode.Keypad9)))
             {
-                Shoot();
+                if (CanFire)
+                {
+                    
+                    StartCoroutine("Shoot");
+                }
+            }
+
+            if ((IsPlayer1 && Input.GetKeyDown(KeyCode.Q)) || (!IsPlayer1 && Input.GetKeyDown(KeyCode.Keypad7)))
+            {
+                NextWeapon();
+            }
+
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collider)
+    {
+        if (collider.gameObject.GetComponent<BattlefieldObject>())
+        {
+            var battleObject = collider.gameObject.GetComponent<BattlefieldObject>();
+            if (battleObject.Durability + 1 < Durability)
+            {
+                battleObject.ReduceDurability(Durability);
             }
         }
     }
 
-
-
-    public void Shoot()
+    public IEnumerator Shoot()
     {
+        CanFire = false;
         if (Weapons[ActiveWeapon].shotType == ShotType.Standard)
         {
             var bullet = Instantiate(BulletPrefab, BulletSpawn.position, BulletSpawn.transform.rotation).GetComponent<Bullet>();
@@ -121,6 +144,8 @@ public class PlayerTank : MonoBehaviour
         {
             Debug.LogError("No prefab exists for this shot type");
         }
+        yield return new WaitForSeconds(FireRate + Weapons[ActiveWeapon].RateOfFireModifyer);
+        CanFire = true;
         
     }
 
@@ -155,18 +180,34 @@ public class PlayerTank : MonoBehaviour
     IEnumerator EndRound()
     {
         levelController.RoundEnded = true;
-        if(PlayerNumber == Player.Player1)
+        if(IsPlayer1)
         {
-            levelController.Player1Score += 1;
+            levelController.Player2Score += 1;
         }
         else
         {
-            levelController.Player2Score += 1;
+            levelController.Player1Score += 1;
         }
         yield return new WaitForSeconds(3);
         levelController.Refresh();
     }
 
+    public void NextWeapon()
+    {
+        ActiveWeapon += 1;
+        if(ActiveWeapon >= Weapons.Count)
+        {
+            ActiveWeapon = 0;
+        }
+        if (IsPlayer1)
+        {
+            levelController.Player1ActiveWeaponText.text = Weapons[ActiveWeapon].Name;
+        }
+        else
+        {
+            levelController.Player2ActiveWeaponText.text = Weapons[ActiveWeapon].Name;
+        }
+    }
 }
 
 public enum Player
