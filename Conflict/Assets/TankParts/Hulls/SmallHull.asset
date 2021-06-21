@@ -16,7 +16,7 @@ MonoBehaviour:
   NumberOfWeapons: 1
   ForwardSpeedModifyer: 2
   BackwardsSpeedModifyer: 2
-  AccelerationModifyer: 0
-  DeccelerationModifyer: 0
+  AccelerationModifyer: 0.5
+  DeccelerationModifyer: 0.5
   TurnModifyer: 0
   ScaleModifyer: 0.75

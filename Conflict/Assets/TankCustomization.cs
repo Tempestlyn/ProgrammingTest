@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 public class TankCustomization : MonoBehaviour
 {
+    //This class holds the data given by hull, tread, and weapon selection scripts/buttons
 
     public GameObject TankPrefab;
 

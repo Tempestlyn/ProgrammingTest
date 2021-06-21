@@ -13,6 +13,8 @@ public class StartGameScript : MonoBehaviour
     public GameObject Player1StartingPosition;
     public GameObject Player2StartingPosition;
 
+    public LevelController levelController;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,27 +29,12 @@ public class StartGameScript : MonoBehaviour
 
     public void StartGame()
     {
-        var player1 = Instantiate(Player1Customization.TankPrefab, Player1StartingPosition.transform).GetComponent<PlayerTank>();
-        Player1Customization.SelectedTread.ApplyTankBodyData(player1);
-        Player1Customization.SelectedHull.ApplyTankBodyData(player1);
-        player1.gameObject.GetComponent<SpriteRenderer>().sprite = Player1Customization.SelectedSprite;
-        for(var i = 0; i < Player1Customization.SelectedWeapons.Count; i++)
+        if (Player1Customization.SelectedWeapons.Count != 0 && Player2Customization.SelectedWeapons.Count != 0)
         {
-            player1.Weapons.Add(Player1Customization.SelectedWeapons[i]);
+            levelController.Player1Customization = Player1Customization;
+            levelController.Player2Customization = Player2Customization;
+            levelController.SpawnPlayers();
+            CustomizationUI.SetActive(false);
         }
-
-
-        var player2 = Instantiate(Player2Customization.TankPrefab, Player2StartingPosition.transform).GetComponent<PlayerTank>();
-        Player2Customization.SelectedTread.ApplyTankBodyData(player2);
-        Player2Customization.SelectedHull.ApplyTankBodyData(player2);
-        player2.gameObject.GetComponent<SpriteRenderer>().sprite = Player2Customization.SelectedSprite;
-        for (var i = 0; i < Player2Customization.SelectedWeapons.Count; i++)
-        {
-            player2.Weapons.Add(Player2Customization.SelectedWeapons[i]);
-        }
-
-
-        CustomizationUI.SetActive(false);
-        
     }
 }

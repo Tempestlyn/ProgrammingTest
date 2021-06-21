@@ -36,6 +36,10 @@ public class Bullet : MonoBehaviour
         {
             ResolveHitObject(collider.gameObject.GetComponent<BattlefieldObject>());
         }
+        if (collider.gameObject.GetComponent<PlayerTank>())
+        {
+            ResolveHitPlayer(collider.gameObject.GetComponent<PlayerTank>());
+        }
     }
 
 
@@ -54,6 +58,14 @@ public class Bullet : MonoBehaviour
         ReduceDurability(objDurability);
     }
 
+    public virtual void ResolveHitPlayer(PlayerTank playerTank)
+    {
+        var playerDurability = playerTank.Durability;
+        playerTank.ReduceDurability(Damage);
+        DestroyBullet();
+        ReduceDurability(playerDurability);
+    }
+
     public void ReduceDurability(int value)
     {
         Durability -= value;
@@ -64,7 +76,8 @@ public class Bullet : MonoBehaviour
     }
     public void DestroyBullet()
     {
-        Instantiate(ExplosionPrefab, transform.position, transform.rotation);
+        var explosion = Instantiate(ExplosionPrefab, transform.position, transform.rotation);
+        explosion.GetComponent<Animator>().SetInteger("ExplosionType", 1);
         Destroy(gameObject);
 
     }

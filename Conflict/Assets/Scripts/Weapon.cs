@@ -11,7 +11,6 @@ public class Weapon : ScriptableObject
     public Sprite BulletSprite;
     public float Speed;
     public int Durability;
-    public int Range;
     [HideInInspector]
     public ShotType shotType;
     public int Damage;

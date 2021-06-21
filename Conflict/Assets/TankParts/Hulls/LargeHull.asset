@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ab1116ca98360f468c50868253a0525, type: 3}
   m_Name: LargeHull
   m_EditorClassIdentifier: 
-  DurabilityModifyer: 0
+  DurabilityModifyer: 1
   NumberOfWeapons: 3
-  ForwardSpeedModifyer: 0
-  BackwardsSpeedModifyer: 0
-  AccelerationModifyer: 0
-  DeccelerationModifyer: 0
-  TurnModifyer: 0
+  ForwardSpeedModifyer: -0.25
+  BackwardsSpeedModifyer: -0.25
+  AccelerationModifyer: -0.25
+  DeccelerationModifyer: -0.25
+  TurnModifyer: -0.25
   ScaleModifyer: 1.25

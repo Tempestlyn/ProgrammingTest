@@ -6,6 +6,8 @@ public class SpawnPoint : MonoBehaviour
 {
     public List<GameObject> SpawnableObjects = new List<GameObject>();
     public bool Filled;
+
+    private GameObject spawnedObject;
     // Start is called before the first frame update
 
     public void SpawnObject()
@@ -18,5 +20,14 @@ public class SpawnPoint : MonoBehaviour
         var objectToSpawn = SpawnableObjects[Random.Range(0, SpawnableObjects.Count)];
         Instantiate(objectToSpawn, transform.position, objectToSpawn.transform.rotation);
         Filled = true;
+    }
+
+    public void Clear()
+    {
+        if (Filled)
+        {
+            Destroy(spawnedObject);
+            Filled = false;
+        }
     }
 }

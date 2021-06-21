@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: HeavyDroneShot
   m_EditorClassIdentifier: 
   BulletSprite: {fileID: 0}
-  Speed: 2
+  Speed: 3
   Durability: 1
-  Range: 0
   shotType: 2
   Damage: 2
   HomingTurnSpeed: 100

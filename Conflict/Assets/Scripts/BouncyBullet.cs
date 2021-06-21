@@ -10,6 +10,10 @@ public class BouncyBullet : Bullet
         {
             ResolveHitObject(collider.gameObject.GetComponent<BattlefieldObject>());
         }
+        else if(collider.gameObject.GetComponent<PlayerTank>())
+        {
+            ResolveHitPlayer(collider.gameObject.GetComponent<PlayerTank>());
+        }
     }
 
     public override void ResolveHitObject(BattlefieldObject obj)
@@ -30,5 +34,11 @@ public class BouncyBullet : Bullet
             }
             ReduceDurability(objDurability);
         }
+    }
+
+    public override void ResolveHitPlayer(PlayerTank playerTank)
+    {
+        playerTank.ReduceDurability(Damage);
+        ReduceDurability(1);
     }
 }
