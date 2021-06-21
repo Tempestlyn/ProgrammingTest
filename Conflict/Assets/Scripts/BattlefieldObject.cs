@@ -10,7 +10,6 @@ public class BattlefieldObject : MonoBehaviour
     public int Durability;
     public bool Bouncy;
     public GameObject DestroyedParticles;
-    // Start is called before the first frame update
 
 
     private void Start()
