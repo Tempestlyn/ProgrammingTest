@@ -17,3 +17,16 @@ MonoBehaviour:
   AccelerationModifyer: 0.25
   DeccelerationModifyer: 0.25
   TurnModifyer: 20
+  DurabilityModifyer: 1
+  Name: Heavy Duty Treads
+  Description: '+Turn Speed
+
+    +Acceleration
+
+    +Durability
+
+    -Speed
+
+
+    Heavy
+    and durable, but don''t expect to dodge spam though.'

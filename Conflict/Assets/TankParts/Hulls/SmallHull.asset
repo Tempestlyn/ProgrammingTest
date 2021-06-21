@@ -12,11 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ab1116ca98360f468c50868253a0525, type: 3}
   m_Name: SmallHull
   m_EditorClassIdentifier: 
-  DurabilityModifyer: 0
+  DurabilityModifyer: -1
   NumberOfWeapons: 1
-  ForwardSpeedModifyer: 2
-  BackwardsSpeedModifyer: 2
+  ForwardSpeedModifyer: 1
+  BackwardsSpeedModifyer: 1
   AccelerationModifyer: 0.5
   DeccelerationModifyer: 0.5
   TurnModifyer: 0
   ScaleModifyer: 0.75
+  Name: Small Hull
+  Description: '1 Weapon
+
+    +Speed
+
+    +Turning Speed
+
+    -Durability
+
+    -Size'

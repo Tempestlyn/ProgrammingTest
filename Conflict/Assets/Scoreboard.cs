@@ -9,6 +9,4 @@ public class Scoreboard : MonoBehaviour
     public Text Player1Score;
     public Text Player2Score;
 
-
-    
 }

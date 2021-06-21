@@ -30,6 +30,7 @@ public class TreadSelection : MonoBehaviour
 
     public void SelectTread()
     {
+        CustomizationManager.DisplayInfo(Tread.Name, Tread.Description);
         SetSelected();
         foreach (TreadSelection treadSelection in CustomizationManager.TreadSelectionButtons)
         {

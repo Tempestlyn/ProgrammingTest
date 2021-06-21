@@ -21,6 +21,13 @@ public class TankCustomization : MonoBehaviour
     public List<GunSelectionButton> gunSelectionButtons = new List<GunSelectionButton>();
     public List<ColorSelection> ColorSelectionButtons = new List<ColorSelection>();
 
-    public TextMeshPro Name;
-    public TextMeshPro Description;
+    public TextMeshProUGUI Name;
+    public TextMeshProUGUI Description;
+
+
+    public void DisplayInfo(string name, string description)
+    {
+        Name.text = name;
+        Description.text = description;
+    }
 }

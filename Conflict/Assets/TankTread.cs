@@ -10,7 +10,11 @@ public class TankTread : ScriptableObject
     public float AccelerationModifyer;
     public float DeccelerationModifyer;
     public float TurnModifyer;
+    public int DurabilityModifyer;
 
+    public string Name;
+    [TextArea]
+    public string Description;
 
     public void ApplyTankBodyData(PlayerTank tank)
     {
@@ -19,5 +23,6 @@ public class TankTread : ScriptableObject
         tank.Acceleration += AccelerationModifyer;
         tank.Deceleration += AccelerationModifyer;
         tank.TurnSpeed += TurnModifyer;
+        tank.Durability += DurabilityModifyer;
     }
 }

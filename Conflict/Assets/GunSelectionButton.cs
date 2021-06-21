@@ -18,13 +18,13 @@ public class GunSelectionButton : MonoBehaviour
     }
 
 
-    private void SetSelected()
+    public void SetSelected()
     {
         CustomizationManager.SelectedWeapons.Add(Weapon);
         SelectedUI.SetActive(true);
     }
 
-    private void SetUnselected()
+    public void SetUnselected()
     {
         CustomizationManager.SelectedWeapons.Remove(Weapon);
         SelectedUI.SetActive(false);
@@ -32,6 +32,7 @@ public class GunSelectionButton : MonoBehaviour
 
     public void SelectWeapon()
     {
+        CustomizationManager.DisplayInfo(Weapon.Name, Weapon.Description);
         if (CustomizationManager.SelectedWeapons.Count < CustomizationManager.MaxSelectableWeapons && !CustomizationManager.SelectedWeapons.Contains(Weapon))
         {
             SetSelected();

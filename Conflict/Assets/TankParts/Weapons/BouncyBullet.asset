@@ -13,8 +13,15 @@ MonoBehaviour:
   m_Name: BouncyBullet
   m_EditorClassIdentifier: 
   BulletSprite: {fileID: 0}
-  Speed: 4
-  Durability: 3
+  Speed: 3.5
+  Durability: 6
   shotType: 1
   Damage: 1
   HomingTurnSpeed: 5
+  Name: The Bouncer
+  Description: 'Does little damage, but makes the opponent''s life a *bullet* hell.
+    Haha see what I did there?
+
+
+    Be catious though; like any other weapon your
+    own rounds can harm you too. '

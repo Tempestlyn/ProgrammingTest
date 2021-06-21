@@ -24,7 +24,7 @@ public class HullSelectionButton : MonoBehaviour
         {
             if (CustomizationManager.SelectedWeapons.Contains(gunSelectionButton.Weapon))
             {
-                gunSelectionButton.SelectWeapon();
+                gunSelectionButton.SetUnselected();
             }
         }
         CustomizationManager.MaxSelectableWeapons = Hull.NumberOfWeapons;
@@ -32,13 +32,16 @@ public class HullSelectionButton : MonoBehaviour
         SelectedUI.SetActive(true);
     }
 
+
     private void SetUnselected()
     {
         SelectedUI.SetActive(false);
     }
 
+
     public void SelectHull()
     {
+        CustomizationManager.DisplayInfo(Hull.Name, Hull.Description);
         SetSelected();
         foreach (HullSelectionButton hullSelectionButton in CustomizationManager.HullSelectionButtons)
         {

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f04b4cc25c920d64d83e2b73b13a0630, type: 3}
+  m_Name: F1 Treads
+  m_EditorClassIdentifier: 
+  ForwardSpeedModifyer: 0.25
+  BackwardsSpeedModifyer: 0
+  AccelerationModifyer: 0.5
+  DeccelerationModifyer: 0.5
+  TurnModifyer: 0
+  DurabilityModifyer: -1
+  Name: F1 Treads
+  Description: '++Speed
+
+    ++Acceleration
+
+    -Durability
+
+
+    You''ll be fast,
+    but you don''t want to get hit with these on, and if you have a small hull...
+    ever heard of the game I Wanna Be the Guy?'

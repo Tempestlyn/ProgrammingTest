@@ -49,6 +49,7 @@ public class BattlefieldObject : MonoBehaviour
         return Durability;
     }
 }
+
 [System.Serializable]
 public struct DestroyedPrefab
 {

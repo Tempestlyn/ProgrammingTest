@@ -16,6 +16,9 @@ public class Weapon : ScriptableObject
     public int Damage;
     [HideInInspector]
     public float HomingTurnSpeed;
+    public string Name;
+    [TextArea]
+    public string Description;
 }
 
 public enum ShotType
@@ -26,10 +29,10 @@ public enum ShotType
 }
 
 [CustomEditor(typeof(Weapon))]
-public class MyScriptEditor : Editor
+public class WeaponEditor : Editor
 {
     Weapon weapon;
-    string[] originalFields = new string[] { "myStringA", "m_script" };
+    string[] originalFields = new string[] { "Fields", "script" };
     private void OnEnable()
     {
         weapon = (Weapon)target;

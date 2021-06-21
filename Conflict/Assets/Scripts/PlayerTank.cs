@@ -6,8 +6,10 @@ using UnityEngine;
 public class PlayerTank : MonoBehaviour
 {
     //This script is meant to capture player functionality, including movement, shooting
+    
     public Player PlayerNumber;
     private bool IsPlayer1;
+
     public int Durability;
 
     public float CurrentSpeed;
@@ -21,7 +23,7 @@ public class PlayerTank : MonoBehaviour
     public int ActiveWeapon;
     public List<Weapon> Weapons;
 
-    public TankHull BodyData;
+    public LevelController levelController;
 
     public GameObject BulletPrefab;
     public GameObject BouncyBulletPrefab;
@@ -144,12 +146,25 @@ public class PlayerTank : MonoBehaviour
         particles.GetComponent<ParticleSystem>().Play();
         rigidbody.velocity = new Vector2(0, 0);
         rigidbody.isKinematic = true;
-
+        if (!levelController.RoundEnded)
+        {
+            StartCoroutine("EndRound");
+        }
     }
+
     IEnumerator EndRound()
     {
+        levelController.RoundEnded = true;
+        if(PlayerNumber == Player.Player1)
+        {
+            levelController.Player1Score += 1;
+        }
+        else
+        {
+            levelController.Player2Score += 1;
+        }
         yield return new WaitForSeconds(3);
-
+        levelController.Refresh();
     }
 
 }

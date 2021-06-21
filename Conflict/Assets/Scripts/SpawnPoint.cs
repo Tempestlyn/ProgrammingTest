@@ -18,7 +18,7 @@ public class SpawnPoint : MonoBehaviour
             return;
         }
         var objectToSpawn = SpawnableObjects[Random.Range(0, SpawnableObjects.Count)];
-        Instantiate(objectToSpawn, transform.position, objectToSpawn.transform.rotation);
+        spawnedObject = Instantiate(objectToSpawn, transform.position, objectToSpawn.transform.rotation);
         Filled = true;
     }
 

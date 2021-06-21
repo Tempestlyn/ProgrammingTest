@@ -5,7 +5,8 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "TankHull", menuName = "Tank/Create new Tank Hull")]
 public class TankHull : ScriptableObject
-{ 
+{
+    //Holds the data for hull object. In hindsight should have used polymorphism. 
     public int DurabilityModifyer;
     public int NumberOfWeapons;
     public float ForwardSpeedModifyer;
@@ -14,7 +15,9 @@ public class TankHull : ScriptableObject
     public float DeccelerationModifyer;
     public float TurnModifyer;
     public float ScaleModifyer;
-
+    public string Name;
+    [TextArea]
+    public string Description;
 
     public void ApplyTankBodyData(PlayerTank tank)
     {
