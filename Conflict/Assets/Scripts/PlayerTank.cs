@@ -26,6 +26,10 @@ public class PlayerTank : MonoBehaviour
 
     public LevelController levelController;
 
+    public GameObject FirePrefab;
+    public GameObject TreadMarkPrefab;
+    private bool placeTrack = true;
+
     public GameObject BulletPrefab;
     public GameObject BouncyBulletPrefab;
     public GameObject HomingBulletPrefab;
@@ -53,10 +57,18 @@ public class PlayerTank : MonoBehaviour
             if ((IsPlayer1 && (Input.GetKey(KeyCode.W)) && (CurrentSpeed < MaxForwardSpeed)) || (!IsPlayer1 && (Input.GetKey(KeyCode.Keypad8)) && (CurrentSpeed < MaxForwardSpeed)))
             {
                 CurrentSpeed = CurrentSpeed + (Acceleration * Time.deltaTime);
+                if (placeTrack)
+                {
+                    StartCoroutine("PlaceTrackMarks");
+                }
             }
             else if ((IsPlayer1 && (Input.GetKey(KeyCode.S)) && (CurrentSpeed > -MaxBackwardSpeed)) || (!IsPlayer1 && (Input.GetKey(KeyCode.Keypad5)) && (CurrentSpeed > -MaxBackwardSpeed)))
             {
                 CurrentSpeed = CurrentSpeed - (Acceleration * Time.deltaTime);
+                if (placeTrack)
+                {
+                    StartCoroutine("PlaceTrackMarks");
+                }
             }
             else
             {
@@ -121,6 +133,8 @@ public class PlayerTank : MonoBehaviour
 
     public IEnumerator Shoot()
     {
+        FirePrefab.SetActive(true);
+        StartCoroutine("DisableFire");
         CanFire = false;
         if (Weapons[ActiveWeapon].shotType == ShotType.Standard)
         {
@@ -147,6 +161,12 @@ public class PlayerTank : MonoBehaviour
         yield return new WaitForSeconds(FireRate + Weapons[ActiveWeapon].RateOfFireModifyer);
         CanFire = true;
         
+    }
+
+    public IEnumerator DisableFire()
+    {
+        yield return new WaitForSeconds(0.1f);
+        FirePrefab.SetActive(false);
     }
 
 
@@ -190,6 +210,19 @@ public class PlayerTank : MonoBehaviour
         }
         yield return new WaitForSeconds(3);
         levelController.Refresh();
+    }
+
+    IEnumerator PlaceTrackMarks()
+    {
+        placeTrack = false;
+        Instantiate(TreadMarkPrefab, transform.position, transform.rotation);
+        var waitTime = 0.35f;
+        if(CurrentSpeed > 2)
+        {
+            waitTime = 0.2f;
+        }
+        yield return new WaitForSeconds(waitTime);
+        placeTrack = true;
     }
 
     public void NextWeapon()

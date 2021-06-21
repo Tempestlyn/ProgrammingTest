@@ -18,7 +18,7 @@ MonoBehaviour:
   Durability: 6
   shotType: 1
   Damage: 1
-  HomingTurnSpeed: 5
+  HomingTurnSpeed: 0
   Name: The Bouncer
   Description: 'Does little damage, but makes the opponent''s life a *bullet* hell.
     Haha see what I did there?

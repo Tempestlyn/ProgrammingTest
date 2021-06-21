@@ -14,6 +14,10 @@ public class BouncyBullet : Bullet
         {
             ResolveHitPlayer(collider.gameObject.GetComponent<PlayerTank>());
         }
+        if (collider.gameObject.tag == "Border")
+        {
+            Destroy(gameObject);
+        }
     }
 
     public override void ResolveHitObject(BattlefieldObject obj)

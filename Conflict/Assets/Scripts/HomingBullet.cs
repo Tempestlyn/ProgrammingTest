@@ -4,17 +4,7 @@ using UnityEngine;
 
 public class HomingBullet : Bullet
 {
-    /*
-    public override void Start()
-    {
-        Debug.Log(HomingTurnSpeed);
-        rigidbody = GetComponent<Rigidbody2D>();
 
-        Damage = WeaponData.Damage;
-        Speed = WeaponData.Speed;
-        Durability = WeaponData.Durability;
-    }
-    */
     public override void Update()
     {
         if ((ControllingTank.IsPlayer1 && Input.GetKey(KeyCode.A)) || (!ControllingTank.IsPlayer1 && Input.GetKey(KeyCode.Keypad4)))

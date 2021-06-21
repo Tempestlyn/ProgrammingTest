@@ -12,10 +12,8 @@ public class Weapon : ScriptableObject
     public float Speed;
     public float RateOfFireModifyer;
     public int Durability;
-    [HideInInspector]
     public ShotType shotType;
     public int Damage;
-    [HideInInspector]
     public float HomingTurnSpeed;
     public string Name;
     [TextArea]
@@ -30,29 +28,4 @@ public enum ShotType
     Homing
 }
 
-[CustomEditor(typeof(Weapon))]
-public class WeaponEditor : Editor
-{
-    Weapon weapon;
-    string[] originalFields = new string[] { "Fields", "script" };
-    private void OnEnable()
-    {
-        weapon = (Weapon)target;
-    }
-    public override void OnInspectorGUI()
-    {
-        DrawPropertiesExcluding(serializedObject, originalFields);
-        weapon.shotType = (ShotType)EditorGUILayout.EnumPopup("ShotType", weapon.shotType);
-        
-        switch (weapon.shotType)
-        {
-            case ShotType.Homing:
-            {
-                    weapon.HomingTurnSpeed = EditorGUILayout.FloatField("Homing Turn Speed", weapon.HomingTurnSpeed);
-                    break;
-            }
-        }
 
-        serializedObject.ApplyModifiedProperties();
-    }
-}

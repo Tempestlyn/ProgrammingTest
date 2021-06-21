@@ -88,6 +88,7 @@ public class LevelController : MonoBehaviour
 
     public SpawnPoint GetOpenSpawnPoint()
     {
+        //checks if spawn point has already instantiated an object
         var point = SpawnPoints[Random.Range(0, SpawnPoints.Count)];
         if (point.Filled)
         {
@@ -113,7 +114,7 @@ public class LevelController : MonoBehaviour
 
     public void SpawnPlayers()
     {
-        
+        //Instantiates both players with their selected parts
         Player1Tank = Instantiate(Player1Customization.TankPrefab, Player1StartingPosition.transform).GetComponent<PlayerTank>();
         Player1Tank.PlayerNumber = Player.Player1;
         Player1Tank.levelController = this;
@@ -141,6 +142,7 @@ public class LevelController : MonoBehaviour
 
     void DestroyObjects()
     {
+        //Destroys leftover objects when refreshing the map, specifically bullets and anything with a DestroyOnRefresh component
         var bullets = FindObjectsOfType<Bullet>();
         Debug.Log(bullets.Length);
         for (int i = 0; i < bullets.Length; i++)
